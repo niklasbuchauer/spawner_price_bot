@@ -1,0 +1,15 @@
+services:
+  spawner-bot:
+    build: .
+    container_name: spawner-price-bot
+    restart: unless-stopped
+    environment:
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      GUILD_ID: ${GUILD_ID}
+      ADMIN_ROLE_ID: ${ADMIN_ROLE_ID:-0}
+      DB_PATH: /app/data/spawner_prices.sqlite3
+    volumes:
+      - spawner_bot_data:/app/data
+
+volumes:
+  spawner_bot_data:
